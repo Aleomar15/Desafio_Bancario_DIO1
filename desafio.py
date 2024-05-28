@@ -27,6 +27,7 @@ while True:
         else:
             saldo += aux
             print("Deposito feito com sucesso!!")
+            extrato += f"Deposito: R$ {aux:.2f}\n"
             continuar = input("Continuar...")
         
     
@@ -34,7 +35,7 @@ while True:
         print("Saque")
         saque = 0
         saque = float(input("Valor a ser sacado: "))
-        if numero_saques > LIMITE_SAQUES:
+        if numero_saques >= LIMITE_SAQUES:
             print("Limite de saques diarios exedido")
             continuar = input("Continuar...")
         elif saque < 0:
@@ -50,17 +51,19 @@ while True:
         else:
             saldo -= saque
             print("Saque feito com sucesso!!")
+            extrato += f"Saque: R$ {saque:.2f}\n"
             numero_saques += 1
             continuar = input("Continuar...")    
 
                 
     elif opcao == "e":
-        print("Extrato")
-        if saldo == 0 :
+        print("Extrato:")
+        if not extrato:
             print("Não foram realizadas movimentações")
             continuar = input("Continuar...")
         else:
-            print(f"Extrato: {saldo: .2f} ")
+            print(extrato)
+            print(f"Saldo: {saldo: .2f} ")
             continuar = input("Continuar...")
     
     elif opcao == "q":
